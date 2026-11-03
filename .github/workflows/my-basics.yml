@@ -4,6 +4,11 @@
 # Copyleft(c) by Iskandar Sadykov
 #---------
 name: My-GithubActions-Basics
+
+env:
+  APPLICATION_NAME   : "MYBXApp"
+  DEPLOY_PACKAGE_NAME: "deploy-ver-${{ github.sha }}"
+
 on:
   push:
     branches:
@@ -13,14 +18,21 @@ jobs:
   my_testing: 
     runs-on: ubuntu-latest
     steps:
-      - name: Print Hello in Testing
-        run: echo 'Hello World from Testing job!'
+      - name : Print Hello in Testing
+        run  : echo 'Hello World from Testing job!'
+      - name : Execute few commands
+        run  : |
+          echo "Hello Message 1"
+          echo "Hello Message 2"
+          echo "Application name: ${{ env.APPLICATION_NAME }}"
       
   my_deploy: 
     runs-on: ubuntu-latest
     needs: [ my_testing ]
     steps:
-      - name: Print Hello in Deploy
-        run: echo 'Hello World from Deploy job!'
+      - name : Print Hello in Deploy
+        run  : echo 'Hello World from Deploy job!'
+      - name : Printing Deployment package
+        run  : echo "Deploy package name: ${{ env.DEPLOY_PACKAGE_NAME }}"
     
 
