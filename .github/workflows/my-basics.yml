@@ -33,6 +33,7 @@ jobs:
       - name : Print Hello in Deploy
         run  : echo 'Hello World from Deploy job!'
       - name : Printing Deployment package
-        run  : echo "Deploy package name: ${{ env.DEPLOY_PACKAGE_NAME }}"
+        run  : |
+          echo "Deploy package name: ${{ env.DEPLOY_PACKAGE_NAME }}"
     
 
